@@ -1,6 +1,6 @@
-# Booost Clone - Hair Braiding Management System
+# Hair Braiding Management System
 
-A comprehensive web-based management system for hair braiding businesses, inspired by booost.onrender.com. This system helps manage stylists, track braiding services, handle payments, and provides analytics for hair braiding businesses across multiple locations.
+A comprehensive web-based management system for hair braiding businesses, This system helps manage stylists, track braiding services, handle payments, and provides analytics for hair braiding businesses across multiple locations.
 
 ## 🌟 Features
 
@@ -42,12 +42,12 @@ Simply open `index.html` in your web browser to see the demo with sample data.
 1. Go to [Google Apps Script](https://script.google.com/)
 2. Click "New Project"
 3. Replace the default code with the contents of `Code.gs`
-4. Save the project with a name like "Booost Management System"
+4. Save the project with a name like "Marketing Management System"
 
 #### Step 2: Create Google Spreadsheet
 1. Go to [Google Sheets](https://sheets.google.com/)
 2. Create a new spreadsheet
-3. Name it "Booost Management Data"
+3. Name it "Marketing Management Data"
 4. Copy the spreadsheet ID from the URL (the long string between `/d/` and `/edit`)
 5. In your Apps Script project, replace `YOUR_SPREADSHEET_ID_HERE` with your actual spreadsheet ID
 
@@ -66,7 +66,7 @@ Simply open `index.html` in your web browser to see the demo with sample data.
 4. Save the file
 
 #### Step 5: Initialize the System
-1. In Apps Script, run the `setupBooostSystem()` function manually once
+1. In Apps Script, run the `setupMarketingSystem()` function manually once
 2. This will create all necessary sheets with proper headers and sample data
 
 ### 4. Open Your Application
@@ -184,7 +184,6 @@ This project is open source and available under the MIT License.
 
 ## 🙏 Acknowledgments
 
-- Inspired by booost.onrender.com
 - Built with Bootstrap, Chart.js, and Google Apps Script
 - Icons provided by Font Awesome
 

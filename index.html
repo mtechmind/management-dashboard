@@ -11,6 +11,8 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <title>Market Activation System - Login</title>
+    <link rel="icon" type="image/jpeg"
+        href="https://www.darlingafrica.com/nigeria/wp-content/uploads/2018/11/cropped-FAV-32x32.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -802,15 +804,21 @@
             padding: 8px 16px;
             font-size: 0.9rem;
         }
+        #stylistsTable th {
+            align-content: center;
+            text-align: center;
+            white-space: nowrap;
+        }
     </style>
 </head>
 
 <body>
     <!-- Login Page -->
-    <div id="loginPage" class="login-container" style="display: none;">
+    <div id="loginPage" class="login-container" style="display: flex;">
         <div class="login-card">
             <div class="login-header">
-                <i class="fas fa-braille"></i>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Godrej_Logo.svg/1200px-Godrej_Logo.svg.png"
+                    alt="Company Logo" style="height: 30px; margin-bottom: 10px;">
                 <h1>Market Activation System</h1>
                 <p class="mb-0">Secure Access Portal</p>
             </div>
@@ -823,7 +831,8 @@
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input type="password" class="form-control" id="password" placeholder="Password" required>
+                        <input type="password" class="form-control" id="password"
+                            placeholder="Password minimum 6 characters" required>
                         <label for="password"><i class="fas fa-lock me-2"></i>Password</label>
                     </div>
 
@@ -837,12 +846,6 @@
                     <button type="submit" class="btn btn-primary login-btn">
                         <i class="fas fa-sign-in-alt me-2"></i>Login
                     </button>
-
-                    <div class="text-center mt-3">
-                        <a href="#" onclick="showForgotPasswordModal(); return false;" class="text-decoration-none">
-                            <i class="fas fa-key me-1"></i>Forgot Password?
-                        </a>
-                    </div>
                 </form>
 
                 <!-- Error/Success Messages -->
@@ -856,21 +859,12 @@
                     <span id="successText"></span>
                 </div>
 
-                <!-- Demo Info -->
-                <div class="demo-credentials">
-                    <div class="title"><i class="fas fa-info-circle me-2"></i>Demo Credentials</div>
-                    <div class="credential">
-                        <span>Admin:</span>
-                        <strong>admin / admin123</strong>
-                    </div>
-                    <div class="credential">
-                        <span>Manager:</span>
-                        <strong>manager / manager123</strong>
-                    </div>
-                    <div class="credential">
-                        <span>User:</span>
-                        <strong>user / user123</strong>
-                    </div>
+                <!-- Access Level Info -->
+                <div class="access-info mt-3">
+                    <small class="text-muted d-block text-center">
+                        <i class="fas fa-shield-alt me-1"></i>
+                        Contact administrator for access credentials
+                    </small>
                 </div>
 
                 <!-- reCAPTCHA Container (hidden, used for OTP verification) -->
@@ -880,7 +874,7 @@
     </div>
 
     <!-- Main Dashboard (Hidden Initially) -->
-    <div id="mainDashboard" class="dashboard-container" style="display: flex;">
+    <div id="mainDashboard" class="dashboard-container" style="display: none;">
         <!-- Navigation -->
         <nav class="navbar">
             <div class="container-fluid">
@@ -888,7 +882,7 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <a class="navbar-brand" href="#">
-                    <i class="fas fa-braille text-primary me-2"></i>
+                    <img src="darling_line.jpeg" alt="Logo" style="height: 30px; margin-right: 10px;"><br>
                     Market Activation System
                 </a>
                 <div class="d-flex align-items-center">
@@ -1283,7 +1277,9 @@
                                     <label for="customerNumber" class="form-label">Customer Mobile Number <span
                                             class="text-muted">(Optional)</span></label>
                                     <input type="tel" name="customerNumber" class="form-control" inputmode="numeric"
-                                        placeholder="Optional mobile number" maxlength="11">
+                                        placeholder="Optional mobile number (07xxxxxxxxx, 08xxxxxxxxx, 09xxxxxxxxx)"
+                                        maxlength="11" pattern="0[789][0-9]{9}"
+                                        title="Mobile number must start with 07, 08, or 09">
                                     <span><small id="cstmobnmsg" class="d-none text-danger"></small></span>
 
                                     <!-- OTP functionality disabled for testing -->
@@ -1418,14 +1414,14 @@
                                 <div>
                                     <i class="fas fa-users me-2"></i> Stylists Directory
                                 </div>
-                                <div class="d-flex gap-2">
+                                <!-- <div class="d-flex gap-2">
                                     <button class="btn btn-outline-primary btn-sm" onclick="refreshStylists()">
                                         <i class="fas fa-refresh"></i> Refresh
                                     </button>
                                     <button class="btn btn-primary btn-sm" onclick="exportStylists()">
                                         <i class="fas fa-download"></i> Export
                                     </button>
-                                </div>
+                                </div> -->
                             </div>
                             <!-- Search and Filter Bar -->
                             <div class="mt-3">
@@ -1440,7 +1436,7 @@
                                                 onkeyup="filterStylists()">
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <select class="form-select" id="locationFilter" onchange="filterStylists()">
                                             <option value="">All Locations</option>
                                             <option value="AKURE">AKURE</option>
@@ -1451,13 +1447,13 @@
                                             <option value="OSOGBO">OSOGBO</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-3 d-none">
+                                    <div class="col-md-3">
                                         <div class="input-group">
                                             <span class="input-group-text">
-                                                <i class="fas fa-phone"></i>
+                                                <i class="fas fa-calendar"></i>
                                             </span>
-                                            <input type="number" class="form-control" id="bankdetailsSearch"
-                                                placeholder="Search bank details..." onkeyup="filterStylists()">
+                                            <input type="date" class="form-control" id="stylistDateFilter"
+                                                onchange="filterStylists()" title="Filter by registration date">
                                         </div>
                                     </div>
                                     <div class="col-md-2">
@@ -1481,7 +1477,7 @@
                                             </th>
                                             <th onclick="sortTable(5)">Bank Details <i class="fas fa-sort"></i></th>
                                             <th onclick="sortTable(6)">Balance Amount <i class="fas fa-sort"></i></th>
-                                            <th onclick="sortTable(7)">Total Payment <i class="fas fa-sort"></i></th>
+                                            <th onclick="sortTable(7)" class="p-1">Total Amount <i class="fas fa-sort"></i><br><small style="font-size: 8px;">(Paid + Unpaid)</small></th>
                                             <!-- <th>Actions</th> -->
                                         </tr>
                                     </thead>
@@ -1596,7 +1592,7 @@
                                             <th>Service</th>
                                             <th>Amount</th>
                                             <th>Status</th>
-                                            <th>Method</th>
+                                            <th>Payment Date</th>
                                         </tr>
                                     </thead>
                                     <tbody id="paymentsTableBody">
@@ -1818,14 +1814,14 @@
                                 <div>
                                     <i class="fas fa-users me-2"></i> Customer Directory
                                 </div>
-                                <div class="d-flex gap-2">
+                                <!-- <div class="d-flex gap-2">
                                     <button class="btn btn-outline-primary btn-sm" onclick="refreshCustomers()">
                                         <i class="fas fa-refresh"></i> Refresh
                                     </button>
                                     <button class="btn btn-primary btn-sm" onclick="exportCustomers()">
                                         <i class="fas fa-download"></i> Export
                                     </button>
-                                </div>
+                                </div> -->
                             </div>
                             <!-- Search and Filter Bar -->
                             <div class="mt-3">
@@ -1886,6 +1882,8 @@
                                             <th>Stylist</th>
                                             <th>Registration</th>
                                             <th>Payment</th>
+                                            <th>Account Details</th>
+                                            <th>Payment Status</th>
                                             <!-- <th>Actions</th> -->
                                         </tr>
                                     </thead>
@@ -1964,7 +1962,9 @@
                                     <div class="col-md-4">
                                         <label class="form-label">Phone Number</label>
                                         <input type="tel" class="form-control" name="phoneNumber" required
-                                            pattern="[0-9]{10}" maxlength="10" minlength="10">
+                                            pattern="0[789][0-9]{9}" maxlength="11" minlength="11"
+                                            title="Mobile number must be exactly 11 digits and start with 07, 08, or 09"
+                                            placeholder="Must start with 07, 08, or 09">
                                     </div>
                                     <div class="col-md-4">
                                         <label class="form-label">Email (Optional)</label>
@@ -1974,20 +1974,22 @@
                                         <label class="form-label">Role</label>
                                         <select class="form-select" name="role" required>
                                             <option value="">Select Role</option>
-                                            <option value="admin">Administrator</option>
-                                            <option value="manager">Manager</option>
-                                            <option value="user">User</option>
-                                            <option value="stylist_only">Stylist Manager</option>
+                                            <option value="superadmin">Super Admin</option>
+                                            <option value="admin">Admin</option>
+                                            <option value="management">Management</option>
+                                            <option value="supervisor">Supervisor</option>
+                                            <option value="finance">Finance</option>//Agency Rep
+                                            <option value="agency_rep">Agency Rep</option>
+                                            <option value="stylist_only">Field Executive</option>
                                         </select>
                                     </div>
                                     <div class="col-md-4">
-                                        <label class="form-label">Location Access</label>
+                                        <label class="form-label">Location Assigned</label>
                                         <select class="form-select" name="location">
                                             <option value="all">All Locations</option>
                                             <option value="AKURE">AKURE</option>
                                             <option value="ONDA">ONDA</option>
-                                            <option value="ADO-EKITI">ADO-EKITI
-                                            </option>
+                                            <option value="ADO-EKITI">ADO-EKITI</option>
                                             <option value="ILORIN">ILORIN</option>
                                             <option value="OSOGBO">OSOGBO</option>
                                         </select>
@@ -1996,9 +1998,92 @@
                                         <label class="form-label">Status</label>
                                         <select class="form-select" name="status">
                                             <option value="active">Active</option>
-                                            <option value="pending">Pending Approval</option>
+                                            <option value="inactive">Inactive</option>
                                             <option value="blocked">Blocked</option>
                                         </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Username</label>
+                                        <input type="text" class="form-control" name="username" required>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Password</label>
+                                        <input type="password" class="form-control" name="password"
+                                            placeholder="password minimum 6 characters" required minlength="6">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Accessible Fields</label>
+                                        <div class="dropdown">
+                                            <button class="btn btn-outline-secondary dropdown-toggle w-100"
+                                                type="button" id="accessFieldsDropdown" data-bs-toggle="dropdown"
+                                                aria-expanded="false">
+                                                Select Access Fields
+                                            </button>
+                                            <div class="dropdown-menu p-2" style="min-width: 250px;">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="dashboard"
+                                                        id="access_dashboard" name="accessFields">
+                                                    <label class="form-check-label"
+                                                        for="access_dashboard">Dashboard</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox"
+                                                        value="register-stylist" id="access_register_stylist"
+                                                        name="accessFields">
+                                                    <label class="form-check-label"
+                                                        for="access_register_stylist">Register Stylist</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox"
+                                                        value="braiding-form" id="access_braiding_form"
+                                                        name="accessFields">
+                                                    <label class="form-check-label" for="access_braiding_form">Braiding
+                                                        Form</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="stylists"
+                                                        id="access_stylists" name="accessFields">
+                                                    <label class="form-check-label"
+                                                        for="access_stylists">Stylists</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="customers"
+                                                        id="access_customers" name="accessFields">
+                                                    <label class="form-check-label"
+                                                        for="access_customers">Customers</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox"
+                                                        value="payment-request" id="access_payment_request"
+                                                        name="accessFields">
+                                                    <label class="form-check-label" for="access_payment_request">Payment
+                                                        Request</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="payments"
+                                                        id="access_payments" name="accessFields">
+                                                    <label class="form-check-label"
+                                                        for="access_payments">Payments</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox"
+                                                        value="user-management" id="access_user_management"
+                                                        name="accessFields">
+                                                    <label class="form-check-label" for="access_user_management">User
+                                                        Management</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="settings"
+                                                        id="access_settings" name="accessFields">
+                                                    <label class="form-check-label"
+                                                        for="access_settings">Settings</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-text">
+                                            Click to open dropdown and check multiple sections. Master admin has access
+                                            to all sections.
+                                        </div>
                                     </div>
                                     <div class="col-12">
                                         <label class="form-label">Description/Notes</label>
@@ -2006,7 +2091,7 @@
                                     </div>
                                 </div>
                                 <div class="mt-3">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="button" class="btn btn-primary" onclick="submitNewUser()">
                                         <i class="fas fa-user-plus"></i> Add User
                                     </button>
                                     <button type="button" class="btn btn-secondary" onclick="toggleAddUserForm()">
@@ -2081,17 +2166,19 @@
                                         <tr>
                                             <th>Name</th>
                                             <th>Phone</th>
+                                            <th>Username</th>
+                                            <th>Password</th>
                                             <th>Role</th>
                                             <th>Location Access</th>
                                             <th>Status</th>
+                                            <th>Access Fields</th>
                                             <th>Created</th>
-                                            <th>Last Login</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody id="usersTableBody">
                                         <tr>
-                                            <td colspan="8" class="text-center text-muted">Loading users...</td>
+                                            <td colspan="10" class="text-center text-muted">Loading users...</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -2169,12 +2256,13 @@
                         <input type="hidden" id="changePasswordUserKey">
                         <div class="mb-3">
                             <label for="newPasswordInput" class="form-label">New Password *</label>
-                            <input type="password" class="form-control" id="newPasswordInput" required minlength="6">
+                            <input type="password" class="form-control" id="newPasswordInput"
+                                placeholder="password minimum 6 characters" required minlength="6">
                         </div>
                         <div class="mb-3">
                             <label for="confirmPasswordInput" class="form-label">Confirm Password *</label>
-                            <input type="password" class="form-control" id="confirmPasswordInput" required
-                                minlength="6">
+                            <input type="password" class="form-control" id="confirmPasswordInput"
+                                placeholder="password minimum 6 characters" required minlength="6">
                         </div>
                     </form>
                 </div>
@@ -2266,23 +2354,17 @@
         // Initialize Firebase and test connectivity - SINGLE CLEAN VERSION
         function initializeApp() {
             // Set document title
-            document.title = 'Market Activation Dashboard';
+            document.title = 'Market Activation System - Login';
 
-            // Initialize dashboard features
-            initializeDashboard();
-            showAllSections();
-            loadStylists();
+            // Initialize login system first
+            initializeLoginSystem();
 
-            // Initialize navigation and charts
-            setupNavigation();
-            initializeCharts(); // Initialize charts with loading state
-            updateDashboardStats(); // Update dashboard statistics and charts with real data
-
-            // Initialize form handlers
+            // Initialize other components (will be called after login)
             initializePasswordToggle();
             initializeCSVUpload();
             initializeNewUserForm();
             initializePaymentRequestForm();
+            initializeAccessFieldsDropdown();
 
             // Test Firebase connectivity
             testFirebaseConnectivity();
@@ -2290,7 +2372,6 @@
 
         // Initialize Firebase connectivity and start app
         testFirebaseConnectivity().then((connected) => {
-
             // Initialize app regardless of Firebase status
             if (document.readyState === 'loading') {
                 document.addEventListener('DOMContentLoaded', initializeApp);
@@ -2399,55 +2480,1188 @@
             }
         }
 
-        // User roles and permissions (defined first)
-        // Dashboard initialized directly without authentication
+        // Access Control System
+        const ACCESS_LEVELS = {
+            ADMIN: 'admin',
+            MANAGER: 'manager',
+            USER: 'user',
+            VIEWER: 'viewer'
+        };
 
+        // Master Login Credentials (Only for initial access to Add User form)
+        const MASTER_LOGIN = {
+            username: 'master_admin',
+            password: 'MASTER@2024#VIJAY',
+            role: ACCESS_LEVELS.ADMIN,
+            name: 'Master Administrator'
+        };
 
+        // Section permissions based on roles
+        const SECTION_PERMISSIONS = {
+            [ACCESS_LEVELS.ADMIN]: ['dashboard', 'register-stylist', 'braiding-form', 'stylists', 'customers', 'payment-request', 'payments', 'reports', 'user-management', 'settings'],
+            [ACCESS_LEVELS.MANAGER]: ['dashboard', 'stylists', 'customers', 'payments', 'reports'],
+            [ACCESS_LEVELS.USER]: ['dashboard', 'stylists', 'customers'],
+            [ACCESS_LEVELS.VIEWER]: ['dashboard', 'reports']
+        };
 
+        // Cache Manager for user data
+        const CacheManager = {
+            cache: new Map(),
+            ttl: 5 * 60 * 1000, // 5 minutes
 
+            set(key, value) {
+                this.cache.set(key, {
+                    value: value,
+                    timestamp: Date.now()
+                });
+            },
 
+            get(key) {
+                const item = this.cache.get(key);
+                if (!item) return null;
 
+                if (Date.now() - item.timestamp > this.ttl) {
+                    this.cache.delete(key);
+                    return null;
+                }
 
-        // Show dashboard (simplified - no authentication)
+                return item.value;
+            },
+
+            delete(key) {
+                this.cache.delete(key);
+            },
+
+            clear() {
+                this.cache.clear();
+            },
+
+            clearExpired() {
+                const now = Date.now();
+                for (const [key, item] of this.cache.entries()) {
+                    if (now - item.timestamp > this.ttl) {
+                        this.cache.delete(key);
+                    }
+                }
+            }
+        };
+
+        // Clear expired cache entries every 2 minutes
+        setInterval(() => CacheManager.clearExpired(), 2 * 60 * 1000);
+
+        // USER_ROLES mapping for display
+        const USER_ROLES = {
+            'superadmin': 'Super Admin',
+            'admin': 'Admin',
+            'management': 'Management',
+            'supervisor': 'Supervisor',
+            'finance': 'Finance',
+            'stylist_only': 'Field Executive',
+            'agency_rep': 'Agency Rep'
+        };
+
+        // Parse access fields from comma-separated string
+        function parseAccessFields(accessFieldsString) {
+            // console.log('Parsing access fields:', accessFieldsString);
+            if (!accessFieldsString || accessFieldsString.trim() === '') {
+                // console.log('No access fields provided, defaulting to dashboard');
+                return ['dashboard'];
+            }
+
+            // Handle 'all' keyword
+            if (accessFieldsString.toLowerCase().trim() === 'all') {
+                return ['dashboard', 'register-stylist', 'braiding-form', 'stylists', 'customers', 'payment-request', 'payments', 'reports', 'user-management', 'settings'];
+            }
+
+            // console.log('Access permissions fields string:', accessFieldsString.split(',').map(field => field.trim()).filter(field => field.length > 0));
+            // Split comma-separated values and clean them
+            const fields = accessFieldsString.split(',').map(field => field.trim()).filter(field => field.length > 0);
+
+            // Ensure at least dashboard access if fields array is empty
+            if (fields.length === 0) {
+                // console.log('Empty fields after parsing, defaulting to dashboard');
+                return ['dashboard'];
+            }
+
+            return fields;
+        }
+
+        // Current user session
+        let currentUser = null;
+
+        // Login function with Firebase backend integration
+        function handleLogin(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+
+            if (!username || !password) {
+                showLoginError('Please enter both username and password');
+                return;
+            }
+
+            // Check master login first
+            if (username.toLowerCase() === MASTER_LOGIN.username && password === MASTER_LOGIN.password) {
+                currentUser = {
+                    username: MASTER_LOGIN.username,
+                    name: MASTER_LOGIN.name,
+                    role: MASTER_LOGIN.role,
+                    isMaster: true,
+                    loginTime: new Date().toISOString()
+                };
+
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                showLoginSuccess(`Welcome ${MASTER_LOGIN.name}!`);
+
+                setTimeout(() => {
+                    showDashboard();
+                }, 500);
+                return;
+            }
+
+            // Check Firebase users database
+            if (firebaseAvailable) {
+                database.ref('users').orderByChild('username').equalTo(username.toLowerCase()).once('value')
+                    .then((snapshot) => {
+                        const users = snapshot.val();
+
+                        if (!users) {
+                            showLoginError('Invalid username or password');
+                            return;
+                        }
+
+                        const userKey = Object.keys(users)[0];
+                        const user = users[userKey];
+
+                        if (user.password !== password) {
+                            showLoginError('Invalid username or password');
+                            return;
+                        }
+
+                        if (user.status !== 'active') {
+                            showLoginError('Account is inactive. Please contact administrator.');
+                            return;
+                        }
+
+                        // Successful login from Firebase
+                        currentUser = {
+                            username: user.username,
+                            name: user.fullName,
+                            role: user.role || ACCESS_LEVELS.USER,
+                            userId: userKey,
+                            isMaster: false,
+                            accessFields: user.accessFields || 'dashboard',
+                            loginTime: new Date().toISOString()
+                        };
+
+                        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                        showLoginSuccess(`Welcome ${user.fullName}!`);
+
+                        setTimeout(() => {
+                            showDashboard();
+                        }, 500);
+                    })
+                    .catch((error) => {
+                        showLoginError('Login failed. Please try again.');
+                    });
+            } else {
+                showLoginError('System unavailable. Please try again later.');
+            }
+        }
+
+        // Show login error
+        function showLoginError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            const errorText = document.getElementById('errorText');
+            errorText.textContent = message;
+            errorDiv.style.display = 'block';
+
+            setTimeout(() => {
+                errorDiv.style.display = 'none';
+            }, 5000);
+        }
+
+        // Show login success  
+        function showLoginSuccess(message) {
+            const successDiv = document.getElementById('successMessage');
+            const successText = document.getElementById('successText');
+
+            if (successDiv && successText) {
+                successText.textContent = message;
+                successDiv.style.display = 'block';
+
+                // Auto-hide success message after 3 seconds
+                setTimeout(() => {
+                    if (successDiv) {
+                        successDiv.style.display = 'none';
+                    }
+                }, 3000);
+            }
+        }
+
+        // Clear login messages
+        function clearLoginMessages() {
+            document.getElementById('errorMessage').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'none';
+        }
+
+        // Show dashboard with access control
         function showDashboard() {
+            // Validate user session before showing dashboard
+            if (!currentUser || !localStorage.getItem('currentUser')) {
+                showLogin();
+                return;
+            }
+
+            // console.log('🚀 showDashboard called for user:', currentUser.username);
+
+            // Clear any login messages
+            clearLoginMessages();
+
             // Hide login page and show main dashboard
             const loginPage = document.getElementById('loginPage');
             const mainDashboard = document.getElementById('mainDashboard');
 
-            if (loginPage) loginPage.style.display = 'none';
-            if (mainDashboard) mainDashboard.style.display = 'flex';
+            if (loginPage) {
+                loginPage.style.display = 'none';
+                // console.log('✅ Login page hidden');
+            }
+            if (mainDashboard) {
+                mainDashboard.style.display = 'flex';
+                // console.log('✅ Main dashboard shown');
+            }
 
             document.title = 'Market Activation Dashboard';
 
-            // Initialize dashboard
-            initializeDashboard();
-            showAllSections();
-        }
+            // Update user display with fresh data
+            if (currentUser) {
+                const currentUserElement = document.getElementById('currentUser');
+                if (currentUserElement) {
+                    currentUserElement.textContent = currentUser.name || currentUser.username;
+                    // console.log('✅ User display updated:', currentUser.name);
+                }
+            }
 
-        // Show all sections (no role-based access control)
-        function showAllSections() {
-            // Show all sidebar links
-            document.querySelectorAll('.sidebar .nav-link').forEach(link => {
-                link.style.display = 'flex';
+            // Clear any previous state and apply fresh permissions
+            document.querySelectorAll('.dashboard-section, .form-section').forEach(section => {
+                section.style.display = 'none';
             });
 
-            // Show dashboard by default
-            document.getElementById('dashboard').style.display = 'block';
+            document.querySelectorAll('.sidebar .nav-link').forEach(link => {
+                link.style.display = 'none';
+                link.classList.remove('active');
+            });
+
+            // console.log('🧹 Previous state cleared');
+
+            // Apply permissions FIRST before dashboard initialization
+            applySectionPermissions();
+
+            // Then initialize dashboard components
+            setTimeout(() => {
+                initializeDashboard();
+                // console.log('✅ Dashboard initialization completed');
+            }, 100);
+        }
+
+        // Apply section permissions based on user role or accessFields
+        function applySectionPermissions() {
+            // Validate current user session
+            if (!currentUser || !localStorage.getItem('currentUser')) {
+                showLogin();
+                return;
+            }
+
+            // Double check user session validity
+            try {
+                const storedUser = localStorage.getItem('currentUser');
+                if (!storedUser) {
+                    currentUser = null;
+                    showLogin();
+                    return;
+                }
+
+                // Ensure currentUser matches stored user
+                const parsedUser = JSON.parse(storedUser);
+                if (!parsedUser || currentUser.username !== parsedUser.username) {
+                    currentUser = parsedUser;
+                }
+            } catch (e) {
+                currentUser = null;
+                localStorage.removeItem('currentUser');
+                showLogin();
+                return;
+            }
+
+            let userPermissions;
+
+            // If master user, use role-based permissions
+            if (currentUser.isMaster) {
+                userPermissions = SECTION_PERMISSIONS[currentUser.role] || [];
+            } else {
+                // For Firebase users, use accessFields
+                userPermissions = parseAccessFields(currentUser.accessFields);
+            }
+
+            // Hide all sections first
+            document.querySelectorAll('.dashboard-section, .form-section').forEach(section => {
+                section.style.display = 'none';
+            });
+
+            // Hide all sidebar links first
+            document.querySelectorAll('.sidebar .nav-link').forEach(link => {
+                const href = link.getAttribute('href');
+                const sectionId = href ? href.substring(1) : '';
+
+                if (userPermissions.includes(sectionId)) {
+                    link.style.display = 'flex';
+                } else {
+                    link.style.display = 'none';
+                }
+            });
+
+            // Remove active class from all links
+            document.querySelectorAll('.sidebar .nav-link').forEach(l => l.classList.remove('active'));
+
+            // Show first available section
+            if (userPermissions.length > 0) {
+                // console.log('📋 Available permissions:', userPermissions);
+
+                const firstSection = document.getElementById(userPermissions[0]);
+                if (firstSection) {
+                    firstSection.style.display = 'block';
+                    // console.log('✅ First section shown:', userPermissions[0]);
+                } else {
+                    // console.warn('⚠️ First section element not found:', userPermissions[0]);
+                }
+
+                // Set first available link as active
+                const firstLink = document.querySelector(`.sidebar .nav-link[href="#${userPermissions[0]}"]`);
+                if (firstLink) {
+                    firstLink.classList.add('active');
+                    // console.log('✅ First link activated:', userPermissions[0]);
+                } else {
+                    // console.warn('⚠️ First link not found for:', userPermissions[0]);
+                }
+            } else {
+                console.warn('⚠️ No permissions available for user');
+                // Fallback: show dashboard section if no specific permissions
+                const dashboardSection = document.getElementById('dashboard');
+                if (dashboardSection) {
+                    dashboardSection.style.display = 'block';
+                    console.log('🔄 Fallback: Dashboard section shown');
+                }
+            }
+        }
+
+        // Updated show all sections with access control
+        function showAllSections() {
+            // This function is now handled by applySectionPermissions
+            applySectionPermissions();
         }
 
         // Show login page and hide dashboard
         function showLogin() {
+            // console.log('🔓 showLogin called - clearing session');
+
             document.getElementById('loginPage').style.display = 'flex';
             document.getElementById('mainDashboard').style.display = 'none';
             document.title = 'Market Activation System - Login';
             clearLoginMessages();
+
+            // Clear form
+            document.getElementById('loginForm').reset();
+
+            // Clear session completely
+            currentUser = null;
+            localStorage.removeItem('currentUser');
+
+            // Reset sidebar to default state
+            document.querySelectorAll('.sidebar .nav-link').forEach(link => {
+                link.style.display = 'none';
+                link.classList.remove('active');
+            });
+
+            // Hide all dashboard sections
+            document.querySelectorAll('.dashboard-section, .form-section').forEach(section => {
+                section.style.display = 'none';
+            });
+
+            // Clear user display
+            const currentUserElement = document.getElementById('currentUser');
+            if (currentUserElement) {
+                currentUserElement.textContent = '';
+            }
+
+            // console.log('✅ Login state reset completed');
         }
 
-        // Simplified logout function (just refresh page)
+        // Logout function
         function logout() {
-            if (confirm('Are you sure you want to refresh the page?')) {
-                window.location.reload();
+            if (confirm('Are you sure you want to logout?')) {
+                // Clear all session data
+                currentUser = null;
+                localStorage.removeItem('currentUser');
+
+                // Clear any cached data
+                if (typeof CacheManager !== 'undefined' && CacheManager.clear) {
+                    CacheManager.clear();
+                }
+
+                // Hide all sections
+                document.querySelectorAll('.dashboard-section, .form-section').forEach(section => {
+                    section.style.display = 'none';
+                });
+
+                // Hide all sidebar links
+                document.querySelectorAll('.sidebar .nav-link').forEach(link => {
+                    link.style.display = 'none';
+                    link.classList.remove('active');
+                });
+
+                // Clear any forms
+                document.querySelectorAll('form').forEach(form => {
+                    if (form.reset) form.reset();
+                });
+
+                showLogin();
             }
+        }
+
+        // Check for existing session on page load
+        function checkExistingSession() {
+            const storedUser = localStorage.getItem('currentUser');
+            if (storedUser) {
+                try {
+                    const parsedUser = JSON.parse(storedUser);
+
+                    // Validate user data structure
+                    if (!parsedUser || !parsedUser.username || !parsedUser.name) {
+                        localStorage.removeItem('currentUser');
+                        showLogin();
+                        return false;
+                    }
+
+                    currentUser = parsedUser;
+
+                    // If master user, allow direct access
+                    if (currentUser.isMaster && currentUser.username === MASTER_LOGIN.username) {
+                        showDashboard();
+                        return true;
+                    }
+
+                    // Verify Firebase user still exists and is active
+                    if (firebaseAvailable && currentUser.userId) {
+                        database.ref(`users/${currentUser.userId}`).once('value')
+                            .then((snapshot) => {
+                                const user = snapshot.val();
+                                if (user && user.status === 'active') {
+                                    showDashboard();
+                                } else {
+                                    showLogin();
+                                }
+                            })
+                            .catch(() => {
+                                showLogin();
+                            });
+                        return true;
+                    } else {
+                        // For non-master users, validate session age (24 hour timeout)
+                        const loginTime = currentUser.loginTime;
+                        if (loginTime) {
+                            const sessionAge = Date.now() - new Date(loginTime).getTime();
+                            const maxSessionAge = 24 * 60 * 60 * 1000; // 24 hours
+
+                            if (sessionAge > maxSessionAge) {
+                                // Session expired
+                                localStorage.removeItem('currentUser');
+                                currentUser = null;
+                                showLogin();
+                                return false;
+                            }
+                        }
+                    }
+                    return true;
+                } catch (e) {
+                    console.log('Session validation error:', e);
+                    localStorage.removeItem('currentUser');
+                    currentUser = null;
+                }
+            }
+            showLogin();
+            return false;
+        }
+
+        // Initialize login system
+        function initializeLoginSystem() {
+            // Add login form event listener
+            const loginForm = document.getElementById('loginForm');
+            if (loginForm) {
+                loginForm.addEventListener('submit', handleLogin);
+            }
+
+            // Check for existing session
+            checkExistingSession();
+
+            // Add page visibility change listener for session validation
+            document.addEventListener('visibilitychange', function () {
+                if (!document.hidden) {
+                    // Page is now visible, validate session
+                    validateCurrentSession();
+                }
+            });
+
+            // Add window focus listener for additional security
+            window.addEventListener('focus', function () {
+                validateCurrentSession();
+            });
+        }
+
+        // Validate current session integrity
+        function validateCurrentSession() {
+            if (currentUser) {
+                const storedUser = localStorage.getItem('currentUser');
+                if (!storedUser) {
+                    // Session was cleared externally
+                    currentUser = null;
+                    showLogin();
+                    return;
+                }
+
+                try {
+                    const parsedUser = JSON.parse(storedUser);
+                    if (!parsedUser || parsedUser.username !== currentUser.username) {
+                        // Session mismatch
+                        currentUser = null;
+                        localStorage.removeItem('currentUser');
+                        showLogin();
+                        return;
+                    }
+
+                    // Check session age
+                    const loginTime = parsedUser.loginTime;
+                    if (loginTime && !parsedUser.isMaster) {
+                        const sessionAge = Date.now() - new Date(loginTime).getTime();
+                        const maxSessionAge = 24 * 60 * 60 * 1000; // 24 hours
+
+                        if (sessionAge > maxSessionAge) {
+                            // Session expired
+                            currentUser = null;
+                            localStorage.removeItem('currentUser');
+                            showLogin();
+                            return;
+                        }
+                    }
+                } catch (e) {
+                    currentUser = null;
+                    localStorage.removeItem('currentUser');
+                    showLogin();
+                }
+            }
+        }
+
+        // Initialize checkbox dropdown for access fields
+        function initializeAccessFieldsDropdown() {
+            const checkboxes = document.querySelectorAll('input[name="accessFields"]');
+            const dropdownButton = document.getElementById('accessFieldsDropdown');
+
+            if (!dropdownButton) return;
+
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function () {
+                    const selectedFields = [];
+                    checkboxes.forEach(cb => {
+                        if (cb.checked) {
+                            selectedFields.push(cb.nextElementSibling.textContent.trim());
+                        }
+                    });
+
+                    if (selectedFields.length === 0) {
+                        dropdownButton.textContent = 'Select Access Fields';
+                    } else if (selectedFields.length === 1) {
+                        dropdownButton.textContent = selectedFields[0];
+                    } else {
+                        dropdownButton.textContent = `${selectedFields.length} sections selected`;
+                    }
+                });
+            });
+        }
+
+        // User Management Functions
+        function toggleAddUserForm() {
+            const form = document.getElementById('addUserForm');
+            if (form.style.display === 'none') {
+                form.style.display = 'block';
+            } else {
+                form.style.display = 'none';
+            }
+        }
+
+        function submitNewUser() {
+            const form = document.getElementById('newUserForm');
+            const formData = new FormData(form);
+
+            // Comprehensive validation
+            form.classList.add('was-validated');
+
+            if (!form.checkValidity()) {
+                showSubmissionPopup('Please fill all required fields correctly.', 'error');
+                return;
+            }
+
+            // Validate full name
+            const fullName = formData.get('fullName')?.trim();
+            if (!fullName || fullName.length < 3) {
+                showSubmissionPopup('Full name must be at least 3 characters.', 'error');
+                return;
+            }
+
+            // Validate phone number
+            const phoneNumber = formData.get('phoneNumber')?.trim();
+            if (!phoneNumber || !/^0[789][0-9]{9}$/.test(phoneNumber)) {
+                showSubmissionPopup('Phone number must be 11 digits starting with 07, 08, or 09.', 'error');
+                return;
+            }
+
+            // Validate email if provided
+            const email = formData.get('email')?.trim();
+            if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                showSubmissionPopup('Please enter a valid email address.', 'error');
+                return;
+            }
+
+            // Validate role selection
+            const role = formData.get('role');
+            if (!role) {
+                showSubmissionPopup('Please select a role.', 'error');
+                return;
+            }
+
+            // Validate username
+            const username = formData.get('username')?.trim();
+            if (!username || username.length < 4) {
+                showSubmissionPopup('Username must be at least 4 characters.', 'error');
+                return;
+            }
+
+            // Validate password
+            const password = formData.get('password');
+            if (!password || password.length < 6) {
+                showSubmissionPopup('Password must be at least 6 characters.', 'error');
+                return;
+            }
+
+            if (!firebaseAvailable) {
+                showSubmissionPopup('Firebase connection required. Please try again.', 'error');
+                return;
+            }
+
+            // Get selected access fields from checkboxes
+            const selectedAccessFields = [];
+            const checkboxes = form.querySelectorAll('input[name="accessFields"]:checked');
+            checkboxes.forEach(checkbox => {
+                selectedAccessFields.push(checkbox.value);
+            });
+
+            if (selectedAccessFields.length === 0) {
+                showSubmissionPopup('Please select at least one access field.', 'error');
+                return;
+            }
+
+            const userData = {
+                userId: 'USER_' + Date.now(),
+                fullName: fullName,
+                phoneNumber: phoneNumber,
+                email: email || '',
+                role: role,
+                location: formData.get('location'),
+                status: formData.get('status'),
+                username: username.toLowerCase(),
+                password: password,
+                accessFields: selectedAccessFields.join(','),
+                description: formData.get('description') || '',
+                createdDate: new Date().toISOString(),
+                createdBy: currentUser?.name || 'System',
+                lastLogin: null
+            };
+
+            // console.log('Saving user data:', userData);
+
+            // Check if username already exists
+            database.ref('users').orderByChild('username').equalTo(userData.username).once('value')
+                .then((snapshot) => {
+                    if (snapshot.exists()) {
+                        showSubmissionPopup('Username already exists. Please choose another.', 'error');
+                        return Promise.reject('Username exists');
+                    }
+
+                    // Save new user
+                    console.log('Saving to Firebase path:', `users/${userData.userId}`);
+                    return database.ref(`users/${userData.userId}`).set(userData);
+                })
+                .then(() => {
+                    console.log('✅ User saved successfully to Firebase');
+                    showSubmissionPopup('User created successfully! 🎉', 'success');
+                    form.reset();
+                    form.classList.remove('was-validated');
+
+                    // Reset checkbox dropdown
+                    const checkboxes = form.querySelectorAll('input[name="accessFields"]');
+                    checkboxes.forEach(checkbox => {
+                        checkbox.checked = false;
+                    });
+                    document.getElementById('accessFieldsDropdown').textContent = 'Select Access Fields';
+
+                    // Clear cache and reload table immediately
+                    CacheManager.clear();
+                    // console.log('🔄 Clearing cache and reloading user table...');
+
+                    // Hide form immediately
+                    toggleAddUserForm();
+
+                    // Force reload table with shorter delay
+                    setTimeout(() => {
+                        // console.log('🚀 Triggering table reload now...');
+                        loadUsersTable();
+                    }, 200);
+                })
+                .catch((error) => {
+                    if (error !== 'Username exists') {
+                        showSubmissionPopup('Failed to create user. Please try again.', 'error');
+                    }
+                });
+        }
+
+        function loadUsersTable() {
+            // console.log('loadUsersTable called');
+            if (!firebaseAvailable) {
+                // console.log('Firebase not available');
+                return;
+            }
+
+            const tbody = document.getElementById('usersTableBody');
+            if (!tbody) {
+                // console.log('usersTableBody element not found');
+                return;
+            }
+
+            tbody.innerHTML = '<tr><td colspan="10" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading users...</td></tr>';
+
+            database.ref('users').once('value')
+                .then((snapshot) => {
+                    const users = snapshot.val() || {};
+                    const usersList = Object.entries(users);
+                    // console.log('📊 Firebase Response - Users loaded:', usersList.length);
+                    // console.log('👥 Users data structure:', users);
+
+                    if (usersList.length === 0) {
+                        // console.log('⚠️ No users found in Firebase');
+                        tbody.innerHTML = '<tr><td colspan="10" class="text-center text-muted">No users found</td></tr>';
+                        return;
+                    }
+
+                    // console.log('🔨 Building table HTML for', usersList.length, 'users');
+
+                    // Update user statistics
+                    // console.log("userlist", usersList);
+                    const totalUsers = usersList.length;
+                    const activeUsers = usersList.filter(([key, user]) => user.status === 'active').length;
+                    const pendingUsers = usersList.filter(([key, user]) => user.status === 'pending').length;
+                    const blockedUsers = usersList.filter(([key, user]) => user.status === 'blocked').length;
+                    // console.log(`User Stats - Total: ${totalUsers}, Active: ${activeUsers}, Pending: ${pendingUsers}, Blocked: ${blockedUsers}`);
+
+                    document.getElementById('totalUsers').textContent = totalUsers;
+                    document.getElementById('activeUsers').textContent = activeUsers;
+                    document.getElementById('pendingUsers').textContent = pendingUsers;
+                    document.getElementById('blockedUsers').textContent = blockedUsers;
+
+                    if (usersList.length === 0) {
+                        // console.log('⚠️ No users found in Firebase');
+                        tbody.innerHTML = '<tr><td colspan="10" class="text-center text-muted">No users found</td></tr>';
+                        return;
+                    }
+
+                    // console.log('users found in Firebase');
+                    tbody.innerHTML = usersList.map(([key, user]) => {
+                        // console.log('Processing user:', key, user);
+                        const statusBadge = {
+                            'active': 'success',
+                            'pending': 'warning',
+                            'blocked': 'danger',
+                            'inactive': 'secondary'
+                        }[user.status] || 'secondary';
+
+                        //console.log('Determined status badge for', user.accessFields, ':', statusBadge);
+                        const accessFieldsArray = [user.accessFields].toString().split(',') || 'dashboard';
+                        //console.log('User access fields for', user.fullName, ':', accessFieldsArray);
+                        const accessFieldsBadges = accessFieldsArray.map(field =>
+                            `<span class="badge bg-primary me-1 mb-1">${field.trim()}</span>`
+                        ).join('');
+
+                        const roleDisplay = USER_ROLES[user.role] || user.role || 'User';
+
+                        return `
+                            <tr>
+                                <td>${user.fullName || 'N/A'}</td>
+                                <td>${user.phoneNumber || 'N/A'}</td>
+                                <td><span class="badge bg-success">${user.username || 'N/A'}</span></td>
+                                <td><span class="badge bg-warning text-dark">${user.password || 'N/A'}</span></td>
+                                <td><span class="badge bg-info">${roleDisplay}</span></td>
+                                <td>${user.location || 'N/A'}</td>
+                                <td><span class="badge bg-${statusBadge}">${user.status ? user.status.charAt(0).toUpperCase() + user.status.slice(1) : 'Pending'}</span></td>
+                                <td style="max-width: 200px;">${accessFieldsBadges}</td>
+                                <td>${user.createdDate ? new Date(user.createdDate).toLocaleDateString() : 'N/A'}</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-sm btn-outline-warning" onclick="editUser('${key}')">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-danger" onclick="deleteUser('${key}')">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        `;
+                    }).join('');
+
+                    // console.log('✅ User table HTML updated successfully with', usersList.length, 'users');
+                })
+                .catch((error) => {
+                    tbody.innerHTML = '<tr><td colspan="10" class="text-center text-danger">Error loading users</td></tr>';
+                });
+        }
+
+        // Edit user functionality
+        function editUser(userId) {
+            if (!firebaseAvailable) {
+                showSubmissionPopup('Firebase connection required.', 'error');
+                return;
+            }
+
+            // Check cache first
+            let cachedUser = CacheManager.get(userId);
+            if (cachedUser) {
+                showEditUserModal(userId, cachedUser);
+                return;
+            }
+
+            // Fetch from Firebase
+            getUserData(userId).then(user => {
+                if (!user) {
+                    showSubmissionPopup('User not found.', 'error');
+                    return;
+                }
+                CacheManager.set(userId, user);
+                showEditUserModal(userId, user);
+            });
+        }
+
+        // Show edit user modal
+        function showEditUserModal(userId, user) {
+            // Create modal HTML
+            const modalHTML = `
+                <div class="modal fade" id="editUserModal" tabindex="-1" data-bs-backdrop="static">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title"><i class="fas fa-edit me-2"></i>Edit User</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="editUserForm" novalidate>
+                                    <input type="hidden" id="editUserId" value="${userId}">
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Full Name *</label>
+                                            <input type="text" class="form-control" id="editFullName" value="${user.fullName || ''}" required minlength="3">
+                                            <div class="invalid-feedback">Full name must be at least 3 characters.</div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Phone Number *</label>
+                                            <input type="tel" class="form-control" id="editPhoneNumber" value="${user.phoneNumber || ''}" required pattern="0[789][0-9]{9}" maxlength="11" title="Mobile number must start with 07, 08, or 09">
+                                            <div class="invalid-feedback">Phone number must be 11 digits starting with 07, 08, or 09.</div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Email</label>
+                                            <input type="email" class="form-control" id="editEmail" value="${user.email || ''}">
+                                            <div class="invalid-feedback">Please enter a valid email.</div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Role *</label>
+                                            <select class="form-select" id="editRole" required>
+                                                <option value="">Select Role</option>
+                                                <option value="superadmin" ${user.role === 'superadmin' ? 'selected' : ''}>Super Admin</option>
+                                                <option value="admin" ${user.role === 'admin' ? 'selected' : ''}>Admin</option>
+                                                <option value="management" ${user.role === 'management' ? 'selected' : ''}>Management</option>
+                                                <option value="supervisor" ${user.role === 'supervisor' ? 'selected' : ''}>Supervisor</option>
+                                                <option value="finance" ${user.role === 'finance' ? 'selected' : ''}>Finance</option>
+                                                <option value="stylist_only" ${user.role === 'stylist_only' ? 'selected' : ''}>Field Executive</option>
+                                            </select>
+                                            <div class="invalid-feedback">Please select a role.</div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Location Assigned</label>
+                                            <select class="form-select" id="editLocation">
+                                                <option value="all" ${user.location === 'all' ? 'selected' : ''}>All Locations</option>
+                                                <option value="AKURE" ${user.location === 'AKURE' ? 'selected' : ''}>AKURE</option>
+                                                <option value="ONDA" ${user.location === 'ONDA' ? 'selected' : ''}>ONDA</option>
+                                                <option value="ADO-EKITI" ${user.location === 'ADO-EKITI' ? 'selected' : ''}>ADO-EKITI</option>
+                                                <option value="ILORIN" ${user.location === 'ILORIN' ? 'selected' : ''}>ILORIN</option>
+                                                <option value="OSOGBO" ${user.location === 'OSOGBO' ? 'selected' : ''}>OSOGBO</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Status *</label>
+                                            <select class="form-select" id="editStatus" required>
+                                                <option value="active" ${user.status === 'active' ? 'selected' : ''}>Active</option>
+                                                <option value="inactive" ${user.status === 'inactive' ? 'selected' : ''}>Inactive</option>
+                                                <option value="blocked" ${user.status === 'blocked' ? 'selected' : ''}>Blocked</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Username *</label>
+                                            <input type="text" class="form-control" id="editUsername" value="${user.username || ''}" required minlength="4">
+                                            <div class="invalid-feedback">Username must be at least 4 characters.</div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Password *</label>
+                                            <input type="password" class="form-control" id="editPassword" placeholder="password minimum 6 characters" value="${user.password || ''}" required minlength="6">
+                                            <div class="invalid-feedback">Password must be at least 6 characters.</div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label class="form-label">Accessible Fields *</label>
+                                            <div class="dropdown">
+                                                <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="editAccessFieldsDropdown" data-bs-toggle="dropdown">
+                                                    Select Access Fields
+                                                </button>
+                                                <div class="dropdown-menu p-2" style="min-width: 250px;">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="dashboard" id="edit_access_dashboard" name="editAccessFields">
+                                                        <label class="form-check-label" for="edit_access_dashboard">Dashboard</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="register-stylist" id="edit_access_register_stylist" name="editAccessFields">
+                                                        <label class="form-check-label" for="edit_access_register_stylist">Register Stylist</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="braiding-form" id="edit_access_braiding_form" name="editAccessFields">
+                                                        <label class="form-check-label" for="edit_access_braiding_form">Braiding Form</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="stylists" id="edit_access_stylists" name="editAccessFields">
+                                                        <label class="form-check-label" for="edit_access_stylists">Stylists</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="customers" id="edit_access_customers" name="editAccessFields">
+                                                        <label class="form-check-label" for="edit_access_customers">Customers</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="payment-request" id="edit_access_payment_request" name="editAccessFields">
+                                                        <label class="form-check-label" for="edit_access_payment_request">Payment Request</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="payments" id="edit_access_payments" name="editAccessFields">
+                                                        <label class="form-check-label" for="edit_access_payments">Payments</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="user-management" id="edit_access_user_management" name="editAccessFields">
+                                                        <label class="form-check-label" for="edit_access_user_management">User Management</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="settings" id="edit_access_settings" name="editAccessFields">
+                                                        <label class="form-check-label" for="edit_access_settings">Settings</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-text">Select at least one access field.</div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label class="form-label">Description/Notes</label>
+                                            <textarea class="form-control" id="editDescription" rows="2">${user.description || ''}</textarea>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-primary" onclick="saveUserChanges()">
+                                    <i class="fas fa-save me-2"></i>Save Changes
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Remove existing modal if any
+            const existingModal = document.getElementById('editUserModal');
+            if (existingModal) existingModal.remove();
+
+            // Add modal to body
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+            // Initialize checkboxes
+            const accessFields = (user.accessFields || 'dashboard').split(',');
+            accessFields.forEach(field => {
+                const checkbox = document.querySelector(`input[name="editAccessFields"][value="${field.trim()}"]`);
+                if (checkbox) checkbox.checked = true;
+            });
+
+            // Update dropdown text
+            updateEditAccessFieldsDropdown();
+
+            // Add change listeners to checkboxes
+            document.querySelectorAll('input[name="editAccessFields"]').forEach(checkbox => {
+                checkbox.addEventListener('change', updateEditAccessFieldsDropdown);
+            });
+
+            // Add real-time validation
+            const form = document.getElementById('editUserForm');
+            form.querySelectorAll('input, select').forEach(field => {
+                field.addEventListener('blur', function () {
+                    validateEditFormField(this);
+                });
+            });
+
+            // Show modal
+            const modal = new bootstrap.Modal(document.getElementById('editUserModal'));
+            modal.show();
+        }
+
+        // Update edit access fields dropdown text
+        function updateEditAccessFieldsDropdown() {
+            const checkboxes = document.querySelectorAll('input[name="editAccessFields"]:checked');
+            const dropdown = document.getElementById('editAccessFieldsDropdown');
+            if (!dropdown) return;
+
+            if (checkboxes.length === 0) {
+                dropdown.textContent = 'Select Access Fields';
+            } else if (checkboxes.length === 1) {
+                dropdown.textContent = checkboxes[0].nextElementSibling.textContent;
+            } else {
+                dropdown.textContent = `${checkboxes.length} sections selected`;
+            }
+        }
+
+        // Validate edit form field
+        function validateEditFormField(field) {
+            if (field.checkValidity()) {
+                field.classList.remove('is-invalid');
+                field.classList.add('is-valid');
+            } else {
+                field.classList.remove('is-valid');
+                field.classList.add('is-invalid');
+            }
+        }
+
+        // Save user changes
+        function saveUserChanges() {
+            const form = document.getElementById('editUserForm');
+            form.classList.add('was-validated');
+
+            if (!form.checkValidity()) {
+                showSubmissionPopup('Please fill all required fields correctly.', 'error');
+                return;
+            }
+
+            const userId = document.getElementById('editUserId').value;
+            const fullName = document.getElementById('editFullName').value.trim();
+            const phoneNumber = document.getElementById('editPhoneNumber').value.trim();
+            const email = document.getElementById('editEmail').value.trim();
+            const role = document.getElementById('editRole').value;
+            const location = document.getElementById('editLocation').value;
+            const status = document.getElementById('editStatus').value;
+            const username = document.getElementById('editUsername').value.trim();
+            const password = document.getElementById('editPassword').value;
+            const description = document.getElementById('editDescription').value.trim();
+
+            // Get selected access fields
+            const selectedAccessFields = [];
+            document.querySelectorAll('input[name="editAccessFields"]:checked').forEach(checkbox => {
+                selectedAccessFields.push(checkbox.value);
+            });
+
+            if (selectedAccessFields.length === 0) {
+                showSubmissionPopup('Please select at least one access field.', 'error');
+                return;
+            }
+
+            // Get original user data
+            getUserData(userId).then(originalUser => {
+                // Check if username changed and already exists
+                if (username.toLowerCase() !== originalUser.username.toLowerCase()) {
+                    return database.ref('users').orderByChild('username').equalTo(username.toLowerCase()).once('value')
+                        .then(snapshot => {
+                            if (snapshot.exists()) {
+                                showSubmissionPopup('Username already exists. Please choose another.', 'error');
+                                return Promise.reject('Username exists');
+                            }
+                            return originalUser;
+                        });
+                }
+                return Promise.resolve(originalUser);
+            }).then(originalUser => {
+                const updatedUser = {
+                    ...originalUser,
+                    fullName: fullName,
+                    phoneNumber: phoneNumber,
+                    email: email,
+                    role: role,
+                    location: location,
+                    status: status,
+                    username: username.toLowerCase(),
+                    password: password,
+                    accessFields: selectedAccessFields.join(','),
+                    description: description,
+                    lastModified: new Date().toISOString(),
+                    modifiedBy: currentUser?.name || 'System'
+                };
+
+                return saveUserData(userId, updatedUser);
+            }).then(() => {
+                // Update cache
+                CacheManager.delete(userId);
+
+                // Close modal
+                const modal = bootstrap.Modal.getInstance(document.getElementById('editUserModal'));
+                modal.hide();
+
+                // Show success popup
+                showSubmissionPopup('User updated successfully! 🎉', 'success');
+
+                // Reload table
+                setTimeout(() => loadUsersTable(), 1000);
+            }).catch(error => {
+                if (error !== 'Username exists') {
+                    showSubmissionPopup('Failed to update user. Please try again.', 'error');
+                }
+            });
+        }
+
+        function deleteUser(userId) {
+            if (!confirm('Are you sure you want to delete this user?')) return;
+
+            // console.log('🗑️ Deleting user:', userId);
+            database.ref(`users/${userId}`).remove()
+                .then(() => {
+                    showSubmissionPopup('User deleted successfully! 🗑️', 'success');
+                    CacheManager.delete(userId);
+                    setTimeout(() => loadUsersTable(), 500);
+                })
+                .catch((error) => {
+                    console.error('Error deleting user:', error);
+                    showSubmissionPopup('Failed to delete user. Please try again.', 'error');
+                });
+        }
+
+        function filterUsers() {
+            // Implementation for filtering users
+        }
+
+        function clearUserFilters() {
+            // Implementation for clearing filters
         }
 
         // Universal save function for any collection - Firebase ONLY
@@ -2579,9 +3793,33 @@
 
         // Initialize dashboard functionality - SINGLE CLEAN VERSION
         function initializeDashboard() {
+            // Initialize forms
             initializeEnhancedStylistForm();
             initializeCustomerForm();
+
+            // Load data
+            loadStylists();
             updateDashboardStats();
+
+            // Load user management if user has access
+            if (currentUser) {
+                let hasUserManagement = false;
+
+                if (currentUser.isMaster) {
+                    hasUserManagement = SECTION_PERMISSIONS[currentUser.role].includes('user-management');
+                } else {
+                    const userPermissions = parseAccessFields(currentUser.accessFields);
+                    hasUserManagement = userPermissions.includes('user-management');
+                }
+
+                if (hasUserManagement) {
+                    loadUsersTable();
+                }
+            }
+
+            // Initialize navigation and charts
+            setupNavigation();
+            initializeCharts();
         }
 
         // Load and display stylists data - SINGLE CLEAN VERSION - Firebase ONLY
@@ -3400,7 +4638,7 @@
                                 <td>Hair Braiding</td>
                                 <td><strong>₦${paymentAmount.toLocaleString()}</strong></td>
                                 <td><span class="badge bg-${statusClass}">${statusText}</span></td>
-                                <td>Cash</td>
+                                <td>${new Date(customer.paymentDate || Date.now()).toLocaleDateString()}</td>
                             </tr>
                         `;
                         tableBody.innerHTML += row;
@@ -3433,9 +4671,9 @@
                 actualTotalAmount += amount;
 
                 const status = (data.paymentStatus || '').toString().toLowerCase();
-                if (status === 'successful' || status === 'completed' || status === 'COMPLETED' || status === 'SUCCESSFUL') {
+                if (status === 'successful' || status === 'completed' || status === 'COMPLETED' || status === 'SUCCESSFUL' || status === 'paid' || status === 'PAID') {
                     actualTotalPaid += amount;
-
+                    // console.log("Adding to paid amount:", actualTotalPaid);
                     // Check if payment was made this month
                     const registrationDate = new Date(data.registrationDate);
                     if (registrationDate.getMonth() === currentMonth && registrationDate.getFullYear() === currentYear) {
@@ -3491,6 +4729,43 @@
                 'E': 'OSOGBO'
             };
             return locations[code] || '';
+        }
+
+        // Submission popup for success and error messages
+        function showSubmissionPopup(message, type) {
+            // Remove existing popup
+            const existingPopup = document.getElementById('submissionPopup');
+            if (existingPopup) existingPopup.remove();
+
+            const icon = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
+            const bgColor = type === 'success' ? '#28a745' : '#dc3545';
+
+            const popupHTML = `
+                <div id="submissionPopup" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10000; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 30px rgba(0,0,0,0.3); min-width: 300px; text-align: center; animation: popupFadeIn 0.3s;">
+                    <div style="color: ${bgColor}; font-size: 48px; margin-bottom: 15px;">
+                        <i class="fas ${icon}"></i>
+                    </div>
+                    <h5 style="color: #333; margin-bottom: 10px;">${type === 'success' ? 'Success!' : 'Error'}</h5>
+                    <p style="color: #666; margin: 0;">${message}</p>
+                </div>
+                <style>
+                    @keyframes popupFadeIn {
+                        from { opacity: 0; transform: translate(-50%, -60%); }
+                        to { opacity: 1; transform: translate(-50%, -50%); }
+                    }
+                </style>
+            `;
+
+            document.body.insertAdjacentHTML('beforeend', popupHTML);
+
+            // Auto remove after 3 seconds
+            setTimeout(() => {
+                const popup = document.getElementById('submissionPopup');
+                if (popup) {
+                    popup.style.animation = 'popupFadeIn 0.3s reverse';
+                    setTimeout(() => popup.remove(), 300);
+                }
+            }, 3000);
         }
 
         function showAlert(message, type) {
@@ -3566,7 +4841,7 @@
         function filterStylists() {
             const searchTerm = document.getElementById('stylistSearch').value.toLowerCase();
             const locationFilter = document.getElementById('locationFilter').value;
-            const bankFilter = document.getElementById('bankdetailsSearch').value;
+            const dateFilter = document.getElementById('stylistDateFilter').value;
             const tableRows = document.querySelectorAll('#stylistsTableBody tr');
 
             let visibleCount = 0;
@@ -3591,13 +4866,26 @@
                 const bankDetails = stylistData.bankAccount;
                 const bankName = stylistData.bankName;
 
+                // Search filter
                 const matchesSearch = name.includes(searchTerm) || code.includes(searchTerm) || phone.includes(searchTerm);
-                const matchesLocation = !locationFilter || location === locationFilter;
-                const matchesBank = !bankFilter || (bankDetails && bankDetails.includes(bankFilter)) || (bankName && bankName.toLowerCase().includes(bankFilter.toLowerCase()));
 
-                const isVisible = matchesSearch && matchesLocation && matchesBank;
+                // Location filter
+                const matchesLocation = !locationFilter || location === locationFilter;
+
+                // Date filter
+                let matchesDate = true;
+                if (dateFilter) {
+                    const filterDate = new Date(dateFilter);
+                    // Compare dates (ignoring time)
+                    const regDateOnly = new Date(regDate.getFullYear(), regDate.getMonth(), regDate.getDate());
+                    const filterDateOnly = new Date(filterDate.getFullYear(), filterDate.getMonth(), filterDate.getDate());
+                    matchesDate = regDateOnly.getTime() === filterDateOnly.getTime();
+                }
+
+                const isVisible = matchesSearch && matchesLocation && matchesDate;
                 row.style.display = isVisible ? '' : 'none';
-                console.log("isVisible:", isVisible);
+                console.log("isVisible:", isVisible, "matchesDate:", matchesDate);
+
                 if (isVisible) {
                     visibleCount++;
                     if (status.toLowerCase() === 'active') {
@@ -3626,23 +4914,22 @@
         }
 
         // Clear all filters
-        function clearFilters() {
-            document.getElementById('stylistSearch').value = '';
-            document.getElementById('locationFilter').value = '';
-            document.getElementById('statusFilter').value = '';
-            document.getElementById('bankdetailsSearch').value = '';
+        // function clearFilters() {
+        //     document.getElementById('stylistSearch').value = '';
+        //     document.getElementById('locationFilter').value = '';
+        //     document.getElementById('stylistDateFilter').value = '';
 
-            // Show all rows
-            const tableRows = document.querySelectorAll('#stylistsTableBody tr');
-            tableRows.forEach(row => {
-                row.style.display = '';
-            });
+        //     // Show all rows
+        //     const tableRows = document.querySelectorAll('#stylistsTableBody tr');
+        //     tableRows.forEach(row => {
+        //         row.style.display = '';
+        //     });
 
-            // Restore original stats by reloading stylists
-            if (typeof loadStylists === 'function') {
-                loadStylists();
-            }
-        }
+        //     // Restore original stats by reloading stylists
+        //     if (typeof loadStylists === 'function') {
+        //         loadStylists();
+        //     }
+        // }
 
         // Sort table function
         let sortDirection = {};
@@ -4691,7 +5978,18 @@
                                 <br><small class="text-muted">₦${data.paymentAmount || '5000'}</small>
                             </div>
                         </td>
-                        
+                        <td>
+                            <div class="text-center">
+                                <strong>${data.accountNumber || ''}</strong>
+                                <br>Bank: <small class="text-muted">${data.bankName || ''}</small>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="text-center">
+                                <strong>${data.approvalStatus || ''}</strong>
+                                <br>Status: <small class="text-muted">${data.bankStatus || ''}</small>
+                            </div>
+                        </td>
                     </tr>
                 `;
             }).join('');
@@ -4814,7 +6112,7 @@
 
                         // Check for all variations of "Paid" status - using consistent logic
                         const status = (customer.paymentStatus || '').toString().toLowerCase();
-                        if (status === 'SUCCESSFUL' || status === 'COMPLETED' || status === 'COMPLETE') {
+                        if (status === 'SUCCESSFUL' || status === 'COMPLETED' || status === 'COMPLETE' || status === 'paid' || status === 'PAID') {
                             paidAmount += amount;
                             // console.log('✅ Counted as PAID:', amount);
                         }
@@ -4945,7 +6243,7 @@
 
                             // Use consistent status checking like dashboard
                             const status = (customer.paymentStatus || '').toString().toLowerCase();
-                            if (status === 'SUCCESSFUL' || status === 'COMPLETED' || status === 'COMPLETE') {
+                            if (status === 'SUCCESSFUL' || status === 'COMPLETED' || status === 'COMPLETE' || status === 'PAID' || status === 'paid') {
                                 paymentDone += amount;
                             } else {
                                 paymentPending += amount;
@@ -5087,11 +6385,15 @@
         function processPaymentUpdates(updates) {
             let successCount = 0;
             let errorCount = 0;
-
+            console.log('Processing', updates.length, 'payment updates...', updates);
             const updatePromises = updates.map(update => {
                 return database.ref(`customers/${update.custId}`).update({
                     paymentStatus: update.paymentStatus,
                     paymentAmount: update.paymentAmount,
+                    approvalStatus: update.approvalStatus,
+                    bankName: update.bankName,
+                    bankStatus: update.bankStatus,
+                    accountNumber: update.accountNumber,
                     paymentDate: update.paymentDate,
                     lastUpdated: new Date().toISOString()
                 }).then(() => {
@@ -5103,7 +6405,7 @@
                 });
             });
 
-            Promise.all(updatePromises).then(() => {
+            Promise.all(updatePromises).then(() => {console.log('Batch payment updates completed');
                 showAlert(`Payment status updated successfully! ✅ ${successCount} updated, ❌ ${errorCount} failed`, 'success');
 
                 // Auto-refresh dashboard data after CSV upload with longer delay
@@ -5310,6 +6612,26 @@
 
         // Show specific section
         function showSection(sectionId) {
+            // Validate session before showing any section
+            if (!currentUser || !localStorage.getItem('currentUser')) {
+                showLogin();
+                return;
+            }
+
+            // Validate user permissions for the requested section
+            let userPermissions = [];
+            if (currentUser.isMaster) {
+                userPermissions = SECTION_PERMISSIONS[currentUser.role] || [];
+            } else {
+                userPermissions = parseAccessFields(currentUser.accessFields);
+            }
+
+            // Check if user has permission to access this section
+            if (!userPermissions.includes(sectionId)) {
+                console.warn(`Access denied to section: ${sectionId}`);
+                return;
+            }
+
             // Hide all sections
             document.querySelectorAll('.dashboard-section, .form-section').forEach(section => {
                 section.style.display = 'none';
@@ -5679,13 +7001,13 @@
                 return;
             }
 
-            if (phoneNumber.length !== 10) {
-                showAlert('Please enter a valid 10-digit phone number', 'warning');
+            if (phoneNumber.length !== 11 || !/^0[789][0-9]{9}$/.test(phoneNumber)) {
+                showAlert('Please enter a valid 11-digit phone number starting with 07, 08, or 09', 'warning');
                 phoneInput.focus();
                 return;
             }
 
-            const fullPhoneNumber = '+91' + phoneNumber;
+            const fullPhoneNumber = '+234' + phoneNumber.substring(1);
             const sendOTPBtn = document.getElementById('sendOTPBtn');
 
             sendOTPBtn.disabled = true;
@@ -5761,7 +7083,7 @@
         }
 
         function checkUserAuthorization(phoneNumber) {
-            const userKey = phoneNumber.replace('+91', '');
+            const userKey = phoneNumber.replace('+234', '0');
 
             // Check in database for user permissions
             getUserData(userKey)
@@ -5808,7 +7130,7 @@
             localStorage.setItem('currentUser', JSON.stringify(currentUser));
 
             // Update last login in database
-            const userKey = userData.phoneNumber.replace('+91', '');
+            const userKey = userData.phoneNumber;
             getUserData(userKey).then((existingUser) => {
                 if (existingUser) {
                     existingUser.lastLogin = new Date().toISOString();
@@ -5823,7 +7145,9 @@
             loginModal.hide();
 
             updateUserDisplay();
-            loadDashboard();
+            updateDashboardStats();
+            loadStylists();
+            loadCustomers();
 
             showAlert(`Welcome back, ${userData.fullName}!`, 'success');
             // console.log('Login completed for user:', currentUser);
@@ -5885,7 +7209,7 @@
             const userData = {
                 userId: formData.get('userId'),
                 fullName: formData.get('fullName'),
-                phoneNumber: '+91' + formData.get('phoneNumber'),
+                phoneNumber: formData.get('phoneNumber'),
                 email: formData.get('email') || '',
                 password: formData.get('password'), // In production, this should be hashed
                 role: formData.get('role'),
@@ -5904,7 +7228,7 @@
                 return;
             }
 
-            const userKey = userData.phoneNumber.replace('+91', '');
+            const userKey = userData.phoneNumber;
             const userId = userData.userId;
 
             // Check if user ID or phone number already exists
@@ -6102,7 +7426,7 @@
                 const foundUser = userEntries.find(([key, user]) =>
                     user.userId === identifier ||
                     user.phoneNumber === identifier ||
-                    key === identifier.replace('+91', '')
+                    key === identifier.replace('+234', '0')
                 );
 
                 if (!foundUser) {
@@ -6151,28 +7475,28 @@
 
             tbody.innerHTML = userEntries.map(([phoneKey, user]) => `
                 <tr>
-                    <td>${user.fullName}</td>
-                    <td>${user.phoneNumber}</td>
+                    <td>${user.fullName || 'N/A'}</td>
+                    <td>${user.phoneNumber || 'N/A'}</td>
                     <td>
                         <span class="badge bg-${getRoleBadgeColor(user.role)}">
-                            ${USER_ROLES[user.role]?.name || user.role}
+                            ${USER_ROLES[user.role] || user.role}
                         </span>
                     </td>
-                    <td>${user.location === 'all' ? 'All Locations' : user.location}</td>
+                    <td>${user.location === 'all' ? 'All Locations' : (user.location || 'N/A')}</td>
                     <td>
                         <span class="badge bg-${getStatusBadgeColor(user.status)}">
-                            ${user.status.charAt(0).toUpperCase() + user.status.slice(1)}
+                            ${user.status ? user.status.charAt(0).toUpperCase() + user.status.slice(1) : 'N/A'}
                         </span>
                     </td>
-                    <td>${formatDate(user.createdDate)}</td>
+                    <td>${user.createdDate ? formatDate(user.createdDate) : 'N/A'}</td>
                     <td>${user.lastLogin ? formatDate(user.lastLogin) : 'Never'}</td>
                     <td>
                         <div class="btn-group btn-group-sm">
-                            <button class="btn btn-outline-primary" onclick="editUser('${phoneKey}', ${JSON.stringify(user).replace(/"/g, '&quot;')})">
+                            <button class="btn btn-outline-primary" onclick="editUser('${phoneKey}')">
                                 <i class="fas fa-edit"></i>
                             </button>
                             <button class="btn btn-outline-info" onclick="showChangePasswordModal('${phoneKey}')" 
-                                title="Change Password">
+                                title="Change Password" placeholder="minimum 6 characters">
                                 <i class="fas fa-key"></i>
                             </button>
                             <button class="btn btn-outline-${user.status === 'active' ? 'warning' : 'success'}" 
@@ -6271,11 +7595,6 @@
             filterUsers();
         }
 
-        function refreshUsers() {
-            showAlert('Refreshing user list...', 'info');
-            loadUsers();
-        }
-
         function exportUsers() {
             // This would typically export to CSV or Excel
             showAlert('Export functionality coming soon', 'info');
@@ -6293,25 +7612,6 @@
                     .catch((error) => {
                         console.error('Error updating user status:', error);
                         showAlert('Failed to update user status', 'danger');
-                    });
-            }
-        }
-
-        function editUser(phoneKey, userData) {
-            // This would open a modal for editing user details
-            showAlert('Edit user functionality coming soon', 'info');
-        }
-
-        function deleteUser(phoneKey, userName) {
-            if (confirm(`Are you sure you want to delete ${userName}? This action cannot be undone.`)) {
-                deleteUserData(phoneKey)
-                    .then(() => {
-                        showAlert('User deleted successfully', 'success');
-                        loadUsers();
-                    })
-                    .catch((error) => {
-                        console.error('Error deleting user:', error);
-                        showAlert('Failed to delete user', 'danger');
                     });
             }
         }
@@ -6662,7 +7962,7 @@
 
             //['Beneficiary Name', 'Bank Code', 'Account Number', 'Amount', 'Narration (Transaction ID)', ];
 
-            const headers = ['Beneficiary Name', 'Bank Code', 'Account Number', 'Amount', 'Narration (Transaction ID)'];
+            const headers = ['Beneficiary', 'BankCode', 'AccountNo', 'Amount', 'Narration'];
             const csvContent = [headers.join(',')];
             console.log("Exporting payment requests:", filteredPaymentRequests);
             filteredPaymentRequests.forEach(item => {
@@ -6670,7 +7970,7 @@
                     `"${item.beneficiaryName}"`,
                     item.bankName,
                     item.bankCode,
-                    item.amount,
+                    item.amount || 5000,
                     item.narration
                     // item.status.toUpperCase()
                 ];
@@ -6739,19 +8039,15 @@
             }
         }
 
-        function refreshEntireDashboard() {
+        function refreshEntireDashboard() {console.log('🔄 Refreshing entire dashboard...');
             // Refresh all dashboard sections
-            loadDashboard();
-            loadCustomersTable();
-            loadStylistsTable();
+            updateDashboardStats();
+            loadStylists();
+            loadCustomers();
             loadPaymentsTable();
             loadPaymentRequestsData();
 
-            // Update all statistics
-            if (typeof updateDashboardStats === 'function') {
-                updateDashboardStats();
-            }
-
+            console.log('✅ Dashboard refreshed successfully');
             showAlert('Dashboard refreshed successfully', 'info');
         }
 
@@ -6825,21 +8121,25 @@
                 headers.forEach((h, i) => {
                     const key = h.toLowerCase().replace(/\s+/g, '');
                     if (key.includes('beneficiary')) colMap.beneficiaryName = i;
-                    if (key.includes('bankcode')) colMap.bankCode = i;
-                    if (key.includes('accountnumber')) colMap.accountNumber = i;
+                    if (key.includes('bank')) colMap.bank = i;
+                    if (key.includes('toaccount')) colMap.toAccount = i; 
+                    if (key.includes('datecreated')) colMap.datecreated = i;
                     if (key === 'amount') colMap.amount = i;
                     if (key.includes('narration') || key.includes('transactionid')) colMap.narration = i;
+                    if (key.includes('approvalstatus')) colMap.approvalStatus = i;
                     if (key.includes('paymentstatus')) colMap.paymentStatus = i;
                 });
 
                 // If 12 columns detected and Payment Status not found, use fixed positions
                 const useFixedPositions = headers.length >= 12 && colMap.paymentStatus === undefined;
                 if (useFixedPositions) {
-                    colMap.beneficiaryName = 2;
-                    colMap.bankCode = 8;
-                    colMap.accountNumber = 9;
+                    colMap.datecreated = 1;
+                    colMap.beneficiary = 2;
+                    colMap.bank = 8;
+                    colMap.toAccount = 9;
                     colMap.amount = 4;
                     colMap.narration = 7;
+                    colMap.approvalStatus = 10;
                     colMap.paymentStatus = 11; // Column 12 (0-indexed)
                 }
 
@@ -6847,12 +8147,15 @@
                     if (lines[i].trim()) {
                         const cells = lines[i].split(',').map(c => c.trim().replace(/"/g, ''));
                         if (cells.length >= 6 && colMap.narration !== undefined && colMap.paymentStatus !== undefined) {
+                            console.log("Processing CSV Row:", colMap, cells);
                             csvData.push({
-                                beneficiaryName: cells[colMap.beneficiaryName] || '',
-                                bankCode: cells[colMap.bankCode] || '',
-                                accountNumber: cells[colMap.accountNumber] || '',
+                                beneficiaryName: cells[colMap.beneficiary] || '',
+                                dateCreated: cells[colMap.datecreated] || new Date().toISOString(),
+                                bank: cells[colMap.bank] || '',
+                                accountNumber: cells[colMap.toAccount] || '',
                                 amount: parseFloat(cells[colMap.amount]) || 0,
                                 narration: cells[colMap.narration],
+                                approvalstatus: cells[colMap.approvalStatus] || '',
                                 paymentStatus: (cells[colMap.paymentStatus] || '').toUpperCase()
                             });
                         }
@@ -6870,9 +8173,14 @@
                 let updatePromises = [];
                 let updatedCount = 0;
                 let notFoundCount = 0;
-
-                csvData.forEach(row => {
-                    const customerId = row.narration; // CUST_ID from narration column
+                console.log("CSV Data to Process:", csvData);
+                csvData.forEach(row => {console.log("row Data:", row);
+                    const customerId = row.narration || 'N/A'; // CUST_ID from narration column
+                    const stlAccount = row.accountNumber || 'N/A'; // Stylist Bank Account Number
+                    const stlBankName = row.bank || 'N/A'; // Stylist Bank Code
+                    const stlApprovalStatus = row.approvalstatus || 'N/A'; // approvalStatus
+                    const stlDateCreated = row.datecreated || new Date().toISOString(); // Date Created
+                    const stlBankStatus = row.paymentStatus || 'N/A';
                     const updatePromise = database.ref('customers').child(customerId).once('value')
                         .then(snapshot => {
                             if (snapshot.exists()) {
@@ -6884,6 +8192,11 @@
                                 }
                                 return database.ref('customers').child(customerId).update({
                                     paymentStatus: newStatus,
+                                    approvalStatus: stlApprovalStatus,
+                                    bankName: stlBankName,
+                                    bankStatus: stlBankStatus,
+                                    accountNumber: stlAccount,
+                                    paymentDate: stlDateCreated,
                                     lastUpdated: new Date().toISOString(),
                                     updatedViaCSV: true
                                 }).then(() => {
@@ -6906,7 +8219,7 @@
                         bootstrap.Modal.getInstance(document.getElementById('csvUploadModal')).hide();
 
                         // Show results
-                        if (updatedCount > 0) {
+                        if (updatedCount > 0) {console.log("Updated Count:", updatedCount);
                             showAlert(`Successfully updated ${updatedCount} payment status(es). ${notFoundCount} records not found or had mismatched data.`, 'success');
 
                             // Refresh entire dashboard
@@ -6937,15 +8250,227 @@
             }
         }
 
-        // New user form handler
+        // New user form handler with real-time validation
         function initializeNewUserForm() {
             const newUserForm = document.getElementById('newUserForm');
             if (newUserForm) {
                 newUserForm.addEventListener('submit', function (e) {
                     e.preventDefault();
-                    addNewUser();
+                    submitNewUser(); // Use the correct function name
                 });
+
+                // Add real-time validation to all input fields
+                const inputFields = newUserForm.querySelectorAll('input, select');
+
+                inputFields.forEach(field => {
+                    // Add validation on input/change events
+                    field.addEventListener('input', function () {
+                        validateFieldRealTime(this);
+                    });
+
+                    field.addEventListener('change', function () {
+                        validateFieldRealTime(this);
+                    });
+
+                    field.addEventListener('blur', function () {
+                        validateFieldRealTime(this);
+                    });
+                });
+
+                // Special validation for phone number
+                const phoneField = newUserForm.querySelector('input[name="phoneNumber"]');
+                if (phoneField) {
+                    phoneField.addEventListener('input', function () {
+                        // Only allow numbers
+                        this.value = this.value.replace(/[^0-9]/g, '');
+                        validatePhoneNumber(this);
+                    });
+                }
+
+                // Special validation for username
+                const usernameField = newUserForm.querySelector('input[name="username"]');
+                if (usernameField) {
+                    usernameField.addEventListener('input', function () {
+                        // Convert to lowercase and remove spaces
+                        this.value = this.value.toLowerCase().replace(/\s/g, '');
+                        validateUsername(this);
+                    });
+                }
+
+                // Email validation
+                const emailField = newUserForm.querySelector('input[name="email"]');
+                if (emailField) {
+                    emailField.addEventListener('input', function () {
+                        if (this.value.trim()) {
+                            validateEmail(this);
+                        } else {
+                            clearFieldValidation(this);
+                        }
+                    });
+                }
+
+                // Password strength validation
+                const passwordField = newUserForm.querySelector('input[name="password"]');
+                if (passwordField) {
+                    passwordField.addEventListener('input', function () {
+                        validatePassword(this);
+                    });
+                }
             }
+        }
+
+        // Real-time field validation function
+        function validateFieldRealTime(field) {
+            const value = field.value.trim();
+
+            // Skip validation for non-required empty fields
+            if (!field.hasAttribute('required') && !value) {
+                clearFieldValidation(field);
+                return true;
+            }
+
+            // Check if field is required and empty
+            if (field.hasAttribute('required') && !value) {
+                showFieldError(field, `${getFieldLabel(field)} is required`);
+                return false;
+            }
+
+            // Check field-specific validations
+            if (field.checkValidity()) {
+                showFieldSuccess(field);
+                return true;
+            } else {
+                showFieldError(field, field.validationMessage);
+                return false;
+            }
+        }
+
+        // Phone number validation
+        function validatePhoneNumber(field) {
+            const value = field.value.trim();
+
+            if (!value) {
+                showFieldError(field, 'Phone number is required');
+                return false;
+            }
+
+            if (value.length < 11) {
+                showFieldError(field, 'Phone number must be at least 11 digits and start with 07, 08, or 09');
+                return false;
+            }
+
+            if (value.length > 11) {
+                showFieldError(field, 'Phone number must not exceed 11 digits and start with 07, 08, or 09');
+                return false;
+            }
+
+            if (!/^[0-9]{11}$/.test(value)) {
+                showFieldError(field, 'Phone number must contain only digits and start with 07, 08, or 09');
+                return false;
+            }
+
+            showFieldSuccess(field);
+            return true;
+        }
+
+        // Username validation
+        function validateUsername(field) {
+            const value = field.value.trim();
+
+            if (!value) {
+                showFieldError(field, 'Username is required');
+                return false;
+            }
+
+            if (value.length < 4) {
+                showFieldError(field, 'Username must be at least 4 characters');
+                return false;
+            }
+
+            if (!/^[a-z0-9_]+$/.test(value)) {
+                showFieldError(field, 'Username can only contain lowercase letters, numbers, and underscores');
+                return false;
+            }
+
+            showFieldSuccess(field);
+            return true;
+        }
+
+        // Email validation
+        function validateEmail(field) {
+            const value = field.value.trim();
+
+            if (value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+                showFieldError(field, 'Please enter a valid email address');
+                return false;
+            }
+
+            showFieldSuccess(field);
+            return true;
+        }
+
+        // Password validation
+        function validatePassword(field) {
+            const value = field.value;
+
+            if (!value) {
+                showFieldError(field, 'Password is required');
+                return false;
+            }
+
+            if (value.length < 6) {
+                showFieldError(field, 'Password must be at least 6 characters');
+                return false;
+            }
+
+            showFieldSuccess(field);
+            return true;
+        }
+
+        // Show field error
+        function showFieldError(field, message) {
+            field.classList.remove('is-valid');
+            field.classList.add('is-invalid');
+
+            // Remove existing feedback
+            const existingFeedback = field.parentNode.querySelector('.invalid-feedback');
+            if (existingFeedback) {
+                existingFeedback.remove();
+            }
+
+            // Add new feedback
+            const feedback = document.createElement('div');
+            feedback.className = 'invalid-feedback';
+            feedback.textContent = message;
+            field.parentNode.appendChild(feedback);
+        }
+
+        // Show field success
+        function showFieldSuccess(field) {
+            field.classList.remove('is-invalid');
+            field.classList.add('is-valid');
+
+            // Remove error feedback
+            const existingFeedback = field.parentNode.querySelector('.invalid-feedback');
+            if (existingFeedback) {
+                existingFeedback.remove();
+            }
+        }
+
+        // Clear field validation
+        function clearFieldValidation(field) {
+            field.classList.remove('is-valid', 'is-invalid');
+
+            const existingFeedback = field.parentNode.querySelector('.invalid-feedback');
+            if (existingFeedback) {
+                existingFeedback.remove();
+            }
+        }
+
+        // Get field label
+        function getFieldLabel(field) {
+            const label = field.parentNode.querySelector('label');
+            return label ? label.textContent.replace('*', '').trim() : field.name || 'Field';
         }
 
         // Google Apps Script Mobile Responsive Force Script
@@ -7237,5 +8762,23 @@
         }
     });
 </script>
+
+<!-- Footer -->
+<footer class="mt-auto py-3 bg-light text-center" style="border-top: 1px solid #dee2e6;">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <img src="darling_square.jpeg" alt="Company Logo" style="height: 40px;">
+            </div>
+            <div class="col-md-6">
+                <small class="text-muted">
+                    © 2024 Market Activation System. All rights reserved.<br>Powered by MNG Technology Mind.
+                </small>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
 
 </html>

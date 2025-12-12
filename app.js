@@ -6598,8 +6598,6 @@
             }
         }
 
-    </script>
-
     // Show popup on successful stylist registration
     document.addEventListener('DOMContentLoaded', function () {//stylistResult
         var stylistForm = document.getElementById('stylistForm');
@@ -6750,4 +6748,3 @@
         // Background security scanning enabled automatically
         // Security checks run quietly in the background every 5 minutes
     });
-</script>

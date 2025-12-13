@@ -1,3 +1,72 @@
+        // Secure event binding for logout button
+document.addEventListener('DOMContentLoaded', function () {
+    var logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', logout());
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Data sorting listeners for stylists table
+    var sCode = document.getElementById('sCode');
+    if (sCode) sCode.addEventListener('click', function () { sortTable(0); });
+    var sName = document.getElementById('sName');
+    if (sName) sName.addEventListener('click', function () { sortTable(1); });
+    var sPhone = document.getElementById('sPhone');
+    if (sPhone) sPhone.addEventListener('click', function () { sortTable(2); });
+    var sLocation = document.getElementById('sLocation');
+    if (sLocation) sLocation.addEventListener('click', function () { sortTable(3); });
+    var sRegistrationDate = document.getElementById('sRegistrationDate');
+    if (sRegistrationDate) sRegistrationDate.addEventListener('click', function () { sortTable(4); });
+    var sBankDetails = document.getElementById('sBankDetails');
+    if (sBankDetails) sBankDetails.addEventListener('click', function () { sortTable(5); });
+    var sBalanceAmount = document.getElementById('sBalanceAmount');
+    if (sBalanceAmount) sBalanceAmount.addEventListener('click', function () { sortTable(6); });
+    var sTotalAmount = document.getElementById('sTotalAmount');
+    if (sTotalAmount) sTotalAmount.addEventListener('click', function () { sortTable(7); });
+});
+
+// Filter and clear user management listeners
+document.addEventListener('DOMContentLoaded', function () {
+    // User management search and filter listeners
+    var userSearch = document.getElementById('userSearch');
+    if (userSearch) userSearch.addEventListener('keyup', filterUsers());
+
+    var roleFilter = document.getElementById('roleFilter');
+    if (roleFilter) roleFilter.addEventListener('change', filterUsers());
+
+    var statusFilter = document.getElementById('statusFilter');
+    if (statusFilter) statusFilter.addEventListener('change', filterUsers());
+
+    var locationFilter = document.getElementById('locationFilter');
+    if (locationFilter) locationFilter.addEventListener('change', filterUsers());
+
+    var clearUserFiltersBtn = document.getElementById('clearUserFiltersBtn');
+    if (clearUserFiltersBtn) clearUserFiltersBtn.addEventListener('click', clearUserFilters());
+});
+
+// Secure event binding for customer search/filter/clear
+document.addEventListener('DOMContentLoaded', function () {
+    var customerSearch = document.getElementById('customerSearch');
+    if (customerSearch) {
+        customerSearch.addEventListener('keyup', filterCustomers());
+    }
+    var customerLocationFilter = document.getElementById('customerLocationFilter');
+    if (customerLocationFilter) {
+        customerLocationFilter.addEventListener('change', filterCustomers());
+    }
+    var customerStylistFilter = document.getElementById('customerStylistFilter');
+    if (customerStylistFilter) {
+        customerStylistFilter.addEventListener('change', filterCustomers());
+    }
+    var customerDate = document.getElementById('customerDate');
+    if (customerDate) {
+        customerDate.addEventListener('change', filterCustomers());
+    }
+    var clearCustomerFiltersBtn = document.getElementById('clearCustomerFiltersBtn');
+    if (clearCustomerFiltersBtn) {
+        clearCustomerFiltersBtn.addEventListener('click', clearCustomerFilters());
+    }
         // iOS Safari Compatibility Fixes
 
         // --- Encryption Utility for Secure Storage ---

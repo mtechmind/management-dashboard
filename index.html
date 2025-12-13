@@ -14,8 +14,9 @@
     <!-- Secure Content Security Policy -->
     <!-- <meta http-equiv="Content-Security-Policy" -->
         <!-- content="default-src 'self'; script-src 'self' 'unsafe-hashes' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; img-src 'self' data: https: https://www.darlingafrica.com https://upload.wikimedia.org https://avatars.githubusercontent.com; font-src 'self' https://cdnjs.cloudflare.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;"> -->
-    <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self';
+   <meta http-equiv="Content-Security-Policy"
+    content="
+    default-src 'self';
     script-src 'self' 'unsafe-hashes' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://www.gstatic.com;
     style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com;
     img-src 'self' data: https: https://www.darlingafrica.com https://upload.wikimedia.org https://avatars.githubusercontent.com;
@@ -24,8 +25,9 @@
     object-src 'none';
     base-uri 'self';
     form-action 'self';
-    connect-src 'self' https://identitytoolkit.googleapis.com https://*.firebaseio.com https://firestore.googleapis.com wss://*.firebaseio.com;
-    upgrade-insecure-requests;">
+    connect-src 'self' https://cdn.jsdelivr.net https://identitytoolkit.googleapis.com https://*.firebaseio.com https://firestore.googleapis.com wss://*.firebaseio.com;
+    upgrade-insecure-requests;
+">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta name="referrer" content="no-referrer-when-downgrade">
     <title>Market Activation System - Login</title>
